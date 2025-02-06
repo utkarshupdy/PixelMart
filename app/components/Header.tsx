@@ -12,6 +12,7 @@ export default function Header() {
   const handleSignOut = async () => {
     try {
       await signOut();
+      <Link href="/"></Link>
       showNotification("Signed out successfully", "success");
     } catch {
       showNotification("Failed to sign out", "error");
@@ -80,6 +81,11 @@ export default function Header() {
                       </Link>
                     </li>
                     <li>
+                      <Link href="/user-products" className="px-4 py-2 hover:bg-base-200 block w-full">
+                        My Products
+                      </Link>
+                    </li>
+                    <li>
                       <button onClick={handleSignOut} className="px-4 py-2 text-error hover:bg-base-200 w-full text-left">
                         Sign Out
                       </button>
@@ -87,8 +93,11 @@ export default function Header() {
                   </>
                 ) : (
                   <li>
-                    <Link href="/login" className="px-4 py-2 hover:bg-base-200 block w-full">
+                    <Link href="/login" className="px-4 py-2 text-white  hover:text-green-400 block w-full">
                       Login
+                    </Link>
+                    <Link href="/register" className="px-4 py-2 text-white  hover:text-green-400 block w-full">
+                      SignUp
                     </Link>
                   </li>
                 )}

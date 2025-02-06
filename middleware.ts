@@ -28,7 +28,7 @@ export default withAuth(
         if (
           pathname === "/" ||
           pathname.startsWith("/api/products") ||
-          pathname.startsWith("/products")
+          pathname.startsWith("/products") 
         ) {
           return true;
         }
@@ -37,6 +37,8 @@ export default withAuth(
         if (pathname.startsWith("/admin")) {
           return token?.role === "admin";
         }
+
+        
 
         // All other routes require authentication
         return !!token;
@@ -54,6 +56,6 @@ export const config = {
      * - favicon.ico (favicon file)
      * - public folder
      */
-    "/((?!_next/static|_next/image|favicon.ico|public/).*)",
+    "//collection((?!_next/static|_next/image|favicon.ico|public/).*)",
   ],
 };

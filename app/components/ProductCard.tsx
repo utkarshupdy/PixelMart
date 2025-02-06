@@ -4,10 +4,11 @@ import { IProduct, IMAGE_VARIANTS } from "@/models/Product";
 import { Eye } from "lucide-react";
 
 export default function ProductCard({ product }: { product: IProduct }) {
-  const lowestPrice = product.variants.reduce(
+  const lowestPrice = (product.variants ?? []).reduce(
     (min, variant) => (variant.price < min ? variant.price : min),
-    product.variants[0]?.price || 0
+    product.variants?.[0]?.price || 0
   );
+  
 
   return (
     <div className="card bg-base-100 shadow hover:shadow-lg transition-all duration-300">
@@ -28,15 +29,13 @@ export default function ProductCard({ product }: { product: IProduct }) {
               path={product.imageUrl}
               alt={product.name}
               loading="eager"
-              transformation={[
-                {
-                  height: IMAGE_VARIANTS.SQUARE.dimensions.height.toString(),
-                  width: IMAGE_VARIANTS.SQUARE.dimensions.width.toString(),
-                  cropMode: "extract",
-                  focus: "center",
-                  quality: "80",
-                },
-              ]}
+              transformation={[{
+                height: IMAGE_VARIANTS.SQUARE.dimensions.height.toString(),
+                width: IMAGE_VARIANTS.SQUARE.dimensions.width.toString(),
+                cropMode: "extract",
+                focus: "center",
+                quality: "80",
+              }]}
               className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
           </div>
@@ -44,7 +43,7 @@ export default function ProductCard({ product }: { product: IProduct }) {
         </Link>
       </figure>
 
-      <div className="card-body p-4">
+      <div className="card-body p-4 flex flex-col justify-between">
         <Link
           href={`/products/${product._id}`}
           className="hover:opacity-80 transition-opacity"
@@ -52,17 +51,19 @@ export default function ProductCard({ product }: { product: IProduct }) {
           <h2 className="card-title text-lg">{product.name}</h2>
         </Link>
 
-        <p className="text-sm text-base-content/70 line-clamp-2 min-h-[2.5rem]">
+        {/* Description with line clamping */}
+        <p className="text-sm text-base-content/70 line-clamp-3 min-h-[2.5rem] overflow-hidden text-ellipsis">
           {product.description}
         </p>
 
         <div className="card-actions justify-between items-center mt-2">
-          <div className="flex flex-col">
+          {/* Using flex to keep the price and variant count in the same row */}
+          <div className="flex flex-col sm:flex-row sm:space-x-4 justify-between w-full">
             <span className="text-lg font-bold">
               From ${lowestPrice.toFixed(2)}
             </span>
             <span className="text-xs text-base-content/50">
-              {product.variants.length} sizes available
+              {product.variants?.length} sizes available
             </span>
           </div>
 
@@ -78,3 +79,5 @@ export default function ProductCard({ product }: { product: IProduct }) {
     </div>
   );
 }
+
+

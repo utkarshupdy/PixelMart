@@ -31,6 +31,7 @@ export interface ImageVariant {
 
 export interface IProduct {
   _id?: mongoose.Types.ObjectId;
+  userId: string;
   name: string;
   description: string;
   imageUrl: string;
@@ -57,12 +58,13 @@ const imageVariantSchema = new Schema<ImageVariant>({
 
 const productSchema = new Schema<IProduct>(
   {
+    userId: { type: String , required: true},
     name: { type: String, required: true },
     description: { type: String, required: true },
     imageUrl: { type: String, required: true },
     variants: [imageVariantSchema],
   },
-  { timestamps: true }
+  { strict: false , timestamps: true }
 );
 
 const Product = models?.Product || model<IProduct>("Product", productSchema);

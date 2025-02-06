@@ -8,6 +8,8 @@ import { Loader2, Plus, Trash2 } from "lucide-react";
 import { useNotification } from "./Notification";
 import { IMAGE_VARIANTS, ImageVariantType } from "@/models/Product";
 import { apiClient, ProductFormData } from "@/lib/api-client";
+import Link from "next/link";
+// import { Session } from "next-auth";
 
 export default function AdminProductForm() {
   const [loading, setLoading] = useState(false);
@@ -67,6 +69,7 @@ export default function AdminProductForm() {
         "error"
       );
     } finally {
+      <Link href="/collection"></Link>
       setLoading(false);
     }
   };

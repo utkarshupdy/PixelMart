@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     }
 
     await connectToDatabase();
-    const body: IProduct = await request.json();
+    const body = await request.json();
 
     if (
       !body.name ||
@@ -56,8 +56,13 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    const newProduct = await Product.create(body);
-    return NextResponse.json(newProduct);
+    // Assign `userId` from session to the new product
+    const newProduct = await Product.create({
+      ...body,
+      userId: session.user.id, // Store the user ID of the product creator
+    });
+
+    return NextResponse.json(newProduct, { status: 201 });
   } catch (error) {
     console.error("Error creating product:", error);
     return NextResponse.json(

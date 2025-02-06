@@ -36,16 +36,16 @@ export default function Footer() {
             <a
               className="block link link-hover cursor-pointer hover:text-primary transition-colors duration-300"
               onClick={() =>
-                showNotification("Email us at support@pixelmart.com", "info")
+                showNotification("Email us at utkarshupdy@pixelmart.com", "info")
               }
             >
-              support@pixelmart.com
+              utkarshupdy@pixelmart.com
             </a>
             <a
               className="block link link-hover cursor-pointer hover:text-primary transition-colors duration-300"
-              onClick={() => showNotification("Call us: +1 234 567 890", "info")}
+              onClick={() => showNotification("Call us: +91 730-XXX-6387", "info")}
             >
-              +1 234 567 890
+              +91 730-XXX-6387
             </a>
           </div>
         </div>

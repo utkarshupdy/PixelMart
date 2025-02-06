@@ -13,6 +13,7 @@ import { Loader2, AlertCircle, Check, Image as ImageIcon } from "lucide-react";
 import { useNotification } from "@/app/components/Notification";
 import { useSession } from "next-auth/react";
 import { apiClient } from "@/lib/api-client";
+import { BackgroundBeams } from "@/app/components/ui/background-beams";
 
 export default function ProductPage() {
   const params = useParams();
@@ -130,6 +131,7 @@ export default function ProductPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <BackgroundBeams />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Image Section */}
         <div className="space-y-4">

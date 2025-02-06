@@ -30,7 +30,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           {/* Main content takes up remaining space to push footer down */}
-          {pathname == "/" ? ( <main className="w-full">{children}</main>) : (<main className="container mx-auto px-4 py-8 flex-grow">{children}</main>)}
+          {pathname == "/" ? ( <main className="w-full">{children}</main>) : (<main className="container mx-auto px-4  flex-grow">{children}</main>)}
           <Footer />
         </Providers>
       </body>

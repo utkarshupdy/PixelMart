@@ -40,6 +40,9 @@ class ApiClient {
     return response.json();
   }
 
+  async getProductsOfThatUser(){
+    return this.fetch<IProduct[]>("/product/user")
+  }
   async getProducts() {
     return this.fetch<IProduct[]>("/products");
   }

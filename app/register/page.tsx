@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useNotification } from "../components/Notification";
 import Link from "next/link";
+import { BackgroundBeams } from "../components/ui/background-beams";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -34,7 +35,7 @@ export default function Register() {
       }
 
       showNotification("Registration successful! Please log in.", "success");
-      router.push("/login");
+      router.push("/");
     } catch (error) {
       showNotification(
         error instanceof Error ? error.message : "Registration failed",
@@ -45,6 +46,7 @@ export default function Register() {
 
   return (
     <div className="max-w-md mx-auto">
+      <BackgroundBeams />
       <h1 className="text-2xl font-bold mb-4">Register</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
