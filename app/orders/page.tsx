@@ -14,18 +14,14 @@ export default function OrdersPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
+  const [orders, setOrders] = useState<IOrder[]>([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     if (status !== "loading" && (!session || session.user.role !== "admin")) {
       router.replace("/");
     }
   }, [session, status, router]);
-
-  if (!session || session.user.role !== "admin") {
-    return null;
-  }
-
-  const [orders, setOrders] = useState<IOrder[]>([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -41,6 +37,10 @@ export default function OrdersPage() {
 
     if (session) fetchOrders();
   }, [session]);
+
+  if (!session || session.user.role !== "admin") {
+    return null;
+  }
 
   if (loading) {
     return (
