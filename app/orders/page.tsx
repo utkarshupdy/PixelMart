@@ -39,7 +39,11 @@ export default function OrdersPage() {
   }, [session]);
 
   if (!session || session.user.role !== "admin") {
-    return null;
+    return (
+      <div className="min-h-[70vh] flex justify-center items-center">
+        <div>You are not authorized to view this page. Kindly log in.</div>
+      </div>
+    );
   }
 
   if (loading) {

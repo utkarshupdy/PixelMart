@@ -7,6 +7,7 @@ import { useNotification } from "../components/Notification";
 import Link from "next/link";
 import { BackgroundBeams } from "../components/ui/background-beams";
 
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
